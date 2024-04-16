@@ -23,18 +23,11 @@ namespace GSBAppartement.Repository.Implementations
             return await _context.Appartement.ToListAsync();
         }
 
-    public async Task<IEnumerable<Appartement>> GetColocationAsync()
-    {
-        return await _context.Appartement
-            .Where(a => a.colocation == true)
-            .ToListAsync();
-    }
-
         public async Task<Appartement> GetByIdAsync(Guid id)
         {
             return await _context.Appartement.FindAsync(id);
         }
-        
+
 
         public async Task<Appartement> AddAsync(Appartement appartement)
         {

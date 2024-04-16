@@ -8,5 +8,8 @@ namespace GSBAppartement.Domain.Personnes
 {
     public class Client : Personne
     {
+        public Guid id_client { get; set; }
+
+        public Personne Personne { get; set; }
     }
 }

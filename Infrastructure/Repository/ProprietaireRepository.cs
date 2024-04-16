@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using GSBAppartement.Domain.Personnes;
+using GSBAppartement.Domain.Appartement;
 using GSBAppartement.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using GSBAppartement.Infrastructure.Context;
@@ -20,8 +21,20 @@ namespace GSBAppartement.Repository.Implementations
 
         public async Task<IEnumerable<Proprietaire>> GetAllAsync()
         {
-            return await _context.Personne
-                .Join(Personne
+            return await _context.Proprietaire
+            .ToListAsync();
+        }
+
+        public async Task<Proprietaire> GetByIdAsync(Guid id)
+        {
+            return await _context.Proprietaire
+            .FirstOrDefaultAsync(p => p.ProprietaireId == id);
+        }
+
+        public async Task<ICollection<Appartement>> GetProprietaireAppartementsByIdAsync(Guid ProprietaireId)
+        {
+            return await _context.Appartement
+                .Where(a => a.ProprietaireId == ProprietaireId)
                 .ToListAsync();
         }
 

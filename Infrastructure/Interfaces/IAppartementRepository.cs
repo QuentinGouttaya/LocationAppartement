@@ -12,7 +12,6 @@ namespace GSBAppartement.Repository.Interfaces
     public interface IAppartementRepository
     {
         Task<IEnumerable<Appartement>> GetAllAsync();
-        Task<IEnumerable<Appartement>> GetColocationAsync();
         Task<Appartement> GetByIdAsync(Guid id);
         Task<Appartement> AddAsync(Appartement appartement);
         Task<Appartement> UpdateAsync(Appartement appartement);
