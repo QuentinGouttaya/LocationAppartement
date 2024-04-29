@@ -5,9 +5,9 @@ using GSBAppartement.Domain.Appartement;
 
 namespace GSBAppartement.Domain.Personnes
 {
+    [Table("Proprietaire")]
     public class Proprietaire : Personne
     {
-
 
         [Column("id_proprietaire")]
         public Guid ProprietaireId { get; set; }

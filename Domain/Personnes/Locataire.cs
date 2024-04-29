@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace GSBAppartement.Domain.Personnes
 {
+    [Table("Locataire")]
     public class Locataire : Personne
     {
-        public Guid id_locataire { get; set; }
-        public int rib { get; set; }
+        [Column("id_locataire")]
+        public Guid LocataireId { get; set; }
 
-        public int id_appartement { get; set; }
+        [Column("rib")]
+        public string Rib { get; set; }
 
-        public Personne Personne { get; set; }
+        [Column("id_appartement")]
+        public Guid AppartementId { get; set; }
+
     }
 }

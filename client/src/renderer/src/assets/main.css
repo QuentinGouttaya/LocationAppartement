@@ -1,0 +1,28 @@
+@import './base.css';
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.appartement {
+  display: flex;
+  flex-direction: column;
+  padding: 0.2rem;
+}
+
+.appartement>* {
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  justify-content: left;
+  gap: 0.5rem;
+
+}
+
+.appartementList {
+  display: flex;
+  flex-direction: column;
+  padding: 0.2rem;
+}

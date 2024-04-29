@@ -9,7 +9,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GSBAppartement.Domain.Personnes
 {
-    [Table("Personne")]
     public abstract class Personne
     {
         [Key]

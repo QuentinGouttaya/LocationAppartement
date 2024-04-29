@@ -11,7 +11,6 @@ namespace GSBAppartement.Repository.Interfaces
     public interface IProprietaireRepository
     {
         Task<IEnumerable<Proprietaire>> GetAllAsync();
-        Task<ICollection<Appartement>> GetProprietaireAppartementsByIdAsync(Guid IdProprietaire);
         Task<Proprietaire> GetByIdAsync(Guid id);
     }
 }

@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using GSBAppartement.Domain.Appartement;
 using GSBAppartement.Repository.Interfaces;
+using GSBAppartement.Domain.Personnes;
 
 namespace GSBAppartement.Controllers
 {
@@ -23,10 +22,10 @@ namespace GSBAppartement.Controllers
             return await _appartementRepository.GetAllAsync();
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Appartement>> GetById(Guid id)
+        [HttpGet("{appartementId}")]
+        public async Task<ActionResult<Appartement>> GetById(Guid appartementId)
         {
-            var appartement = await _appartementRepository.GetByIdAsync(id);
+            var appartement = await _appartementRepository.GetByIdAsync(appartementId);
 
             if (appartement == null)
             {
@@ -34,6 +33,20 @@ namespace GSBAppartement.Controllers
             }
 
             return appartement;
+        }
+
+        [HttpGet("/{idProprietaire}/appartements")]
+        public async Task<IEnumerable<Appartement>> GetProprietaireAppartementsByIdAsync(Guid idProprietaire)
+        {
+            var appartements = await _appartementRepository.GetProprietairesAppartementsByIdAsync(idProprietaire);
+
+            return appartements;
+        }
+
+        [HttpGet("{appartementId}/locataires")]
+        public async Task<IEnumerable<Locataire>> GetLocatairesByAppartementId(Guid appartementId)
+        {
+            return await _appartementRepository.GetLocatairesByAppartementIdAsync(appartementId);
         }
 
     }

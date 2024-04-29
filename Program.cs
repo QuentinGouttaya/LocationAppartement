@@ -4,6 +4,8 @@ using GSBAppartement.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddControllers();
@@ -13,11 +15,22 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:5173",
+                                              "https://localhost:5173");
+                      });
+});
+
+
 // Register the repository
 builder.Services.AddScoped<IAppartementRepository, AppartementRepository>();
 builder.Services.AddScoped<IProprietaireRepository, ProprietaireRepository>();
-
-
+builder.Services.AddScoped<ILocataireRepository, LocataireRepository>();
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
 
 var app = builder.Build();
 
@@ -37,7 +50,7 @@ catch (Exception ex)
 
 
 
-
+app.UseCors(MyAllowSpecificOrigins);
 app.MapControllers();
 
 

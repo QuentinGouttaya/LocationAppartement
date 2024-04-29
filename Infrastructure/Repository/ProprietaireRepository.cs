@@ -21,21 +21,24 @@ namespace GSBAppartement.Repository.Implementations
 
         public async Task<IEnumerable<Proprietaire>> GetAllAsync()
         {
-            return await _context.Proprietaire
+            var proprietaires = await _context.Proprietaire
             .ToListAsync();
+
+            foreach (var proprietaire in proprietaires)
+            {
+                var appartements = await _context.Appartement
+                    .Where(a => a.ProprietaireId == proprietaire.ProprietaireId)
+                    .ToListAsync();
+                proprietaire.Appartements = appartements;
+            }
+
+            return proprietaires;
         }
 
         public async Task<Proprietaire> GetByIdAsync(Guid id)
         {
             return await _context.Proprietaire
             .FirstOrDefaultAsync(p => p.ProprietaireId == id);
-        }
-
-        public async Task<ICollection<Appartement>> GetProprietaireAppartementsByIdAsync(Guid ProprietaireId)
-        {
-            return await _context.Appartement
-                .Where(a => a.ProprietaireId == ProprietaireId)
-                .ToListAsync();
         }
 
 
