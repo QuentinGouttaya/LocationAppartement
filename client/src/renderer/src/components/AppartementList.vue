@@ -1,12 +1,13 @@
 <template>
   <div>
     <h1>Appartement</h1>
+    <select v-model="selectedAppartement">
+      <option v-for="appartement in appartements" :key="appartement.id" :value="appartement">
+        {{ appartement.adresse }} , {{ appartement.ville }}
+        <!-- replace 'name' with the actual property that contains the appartment's name -->
+      </option>
+    </select>
     <Appartement v-if="selectedAppartement" :appartement="selectedAppartement" />
-    <ul>
-      <li class="appartementList" v-for="appartement in appartements" @click="selectAppartement(appartement)">
-        <h3>{{ appartement.id }}</h3>
-      </li>
-    </ul>
   </div>
 </template>
 

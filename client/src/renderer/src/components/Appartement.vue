@@ -1,10 +1,13 @@
 <template>
   <div class="appartement">
-    <h3>{{ appartement.id }}</h3>
-    <p>{{ appartement.adresse }}</p>
-    <p>{{ appartement.codePostal }} {{ appartement.ville }}</p>
-    <p>{{ appartement.prixLoc }} €</p>
-    <p v-if="proprietaire">{{ proprietaire.nom }} {{ proprietaire.prenom }}</p>
+    <p>Adresse : {{ appartement.adresse }}</p>
+    <p>Code postal : {{ appartement.codePostal }}, Ville : {{ appartement.ville }}</p>
+    <p>Prix : {{ appartement.prixLoc }} €</p>
+    <p v-if="proprietaire"> Proprietaire : {{ proprietaire.nom }} {{ proprietaire.prenom }}</p>
+    <button v-if="proprietaire" @click="supprimerAppartement(appartement)">Supprimer l'appartement</button>
+    <button v-if="proprietaire" @click="input = !input">Modifier l'appartement</button>
+
+
   </div>
 </template>
 
@@ -21,7 +24,8 @@ export default {
   },
   data() {
     return {
-      proprietaire: null
+      proprietaire: null,
+      input: false
     }
   },
   watch: {
@@ -33,7 +37,16 @@ export default {
           .then(response => (this.proprietaire = response.data))
       }
     }
+  },
+  methods: {
+    supprimerAppartement(appartement) {
+      axios
+        .delete(`http://localhost:5209/appartement/${appartement.id}`)
+        .then(response => console.log(response.data))
+        .catch(error => console.log(error))
+        .finally(() => this.$router.push('/'))
+
+    },
   }
 }
 </script>
-

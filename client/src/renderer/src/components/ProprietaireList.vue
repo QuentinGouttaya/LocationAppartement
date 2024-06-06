@@ -4,7 +4,7 @@
     <Proprietaire v-if="selectedProprietaire" :proprietaire="selectedProprietaire" />
     <ul>
       <li class="proprietaireList" v-for="proprietaire in proprietaires" @click="selectProprietaire(proprietaire)">
-        <h3>{{ proprietaire.nom }} {{ proprietaire.prenom }}</h3>
+        <h3>{{ proprietaire.idProprietaire }} {{ proprietaire.nom }} {{ proprietaire.prenom }}</h3>
       </li>
     </ul>
   </div>

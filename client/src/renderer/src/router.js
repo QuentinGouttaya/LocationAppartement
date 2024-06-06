@@ -6,6 +6,11 @@ import Home from './components/Home.vue'
 import ClientList from './components/ClientList.vue'
 import Proprietaire from './components/Proprietaire.vue'
 import ProprietaireList from './components/ProprietaireList.vue'
+import Demande from './components/Demande.vue'
+import DemandeList from './components/DemandeList.vue'
+import AjoutClient from './components/AjoutClient.vue'
+import AppartementInput from './components/AppartementInput.vue'
+import ProprietaireInput from './components/ProprietaireInput.vue'
 
 
 const routes = [
@@ -20,6 +25,11 @@ const routes = [
     component: AppartementList
   },
   {
+    path: '/appartement/add',
+    name: 'Ajouter un appartement',
+    component: AppartementInput
+  },
+  {
     path: '/appartement/:id',
     name: 'Appartement',
     component: Appartement
@@ -30,6 +40,11 @@ const routes = [
     component: ProprietaireList
   },
   {
+    path: '/proprietaire/add',
+    name: 'Ajouter un proprietaire',
+    component: ProprietaireInput
+  },
+  {
     path: '/proprietaire/:id',
     name: 'Proprietaire',
     component: Proprietaire
@@ -38,6 +53,21 @@ const routes = [
     path: '/clients',
     name: 'Clients',
     component: ClientList
+  },
+  {
+    path: '/client/ajouter',
+    name: 'Ajouter un client',
+    component: AjoutClient
+  },
+  {
+    path: '/demandes',
+    name: 'Demandes',
+    component: DemandeList
+  },
+  {
+    path: '/demande/:id',
+    name: 'Demande',
+    component: Demande
   },
   {
     path: '/about',
