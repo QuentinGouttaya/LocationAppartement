@@ -29,10 +29,8 @@ namespace GSBAppartement.Repository.Implementations
                 .FirstOrDefaultAsync(l => l.LocataireId == locataireId);
         }
 
-        public async Task AddAsync(Guid clientId, string rib, Guid appartementId)
+        public async Task AddAsync(Client client, string rib, Guid appartementId)
         {
-            var client = await _context.Client
-                .FirstOrDefaultAsync(c => c.ClientId == clientId);
 
 
 

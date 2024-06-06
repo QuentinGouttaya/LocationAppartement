@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GSBAppartements")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1eacb73e5b0faac93626a3e95f6a92e1d0263df5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+87aa10c30c77b13b01b09daecd0734b67cb84729")]
 [assembly: System.Reflection.AssemblyProductAttribute("GSBAppartements")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GSBAppartements")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

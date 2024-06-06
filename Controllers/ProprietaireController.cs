@@ -38,6 +38,21 @@ namespace GSBAppartement.Controllers
             return proprietaire;
         }
 
+        [HttpPost("/proprietaire/add")]
+        public async Task<ActionResult<Proprietaire>> AddAsync(Proprietaire proprietaire)
+        {
+            if (proprietaire == null)
+            {
+                return BadRequest();
+            }
+
+            proprietaire.Appartements = new List<Appartement>();
+
+            return await _proprietaireRepository.AddAsync(proprietaire);
+        }
+
+
+
 
 
 

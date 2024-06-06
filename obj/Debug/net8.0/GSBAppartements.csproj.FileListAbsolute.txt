@@ -37,3 +37,5 @@
 /home/dev/LocationAppartement/obj/Debug/net8.0/GSBAppartements.pdb
 /home/dev/LocationAppartement/obj/Debug/net8.0/GSBAppartements.genruntimeconfig.cache
 /home/dev/LocationAppartement/obj/Debug/net8.0/ref/GSBAppartements.dll
+/home/dev/LocationAppartement/bin/Debug/net8.0/client/package-lock.json
+/home/dev/LocationAppartement/bin/Debug/net8.0/client/package.json

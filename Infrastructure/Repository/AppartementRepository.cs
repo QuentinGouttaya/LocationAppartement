@@ -47,6 +47,7 @@ namespace GSBAppartement.Repository.Implementations
 
         public async Task<Appartement> AddAsync(Appartement appartement)
         {
+            appartement.DateLibre = appartement.DateLibre.ToUniversalTime();
             _context.Appartement.Add(appartement);
             await _context.SaveChangesAsync();
             return appartement;
@@ -67,6 +68,15 @@ namespace GSBAppartement.Repository.Implementations
                 return null;
             }
 
+            var locataires = await GetLocatairesByAppartementIdAsync(appartement.Id);
+            foreach (var locataire in locataires)
+            {
+                _context.Entry(locataire).State = EntityState.Detached;
+                _context.Locataire.Remove(locataire);
+                await _context.SaveChangesAsync();
+            }
+
+            _context.Entry(appartement).State = EntityState.Detached;
             _context.Appartement.Remove(appartement);
             await _context.SaveChangesAsync();
             return appartement;

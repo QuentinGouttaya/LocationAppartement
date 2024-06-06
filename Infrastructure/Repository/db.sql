@@ -11,12 +11,12 @@ CREATE TABLE "Personne" (
 );
 
 CREATE TABLE "Client" (
-    id UUID UNIQUE PRIMARY KEY NOT NULL UNIQUE REFERENCES "Personne"(id),
+    id UUID UNIQUE PRIMARY KEY NOT NULL UNIQUE REFERENCES "Personne"(id) ON DELETE CASCADE,
     id_client UUID UNIQUE NOT NULL DEFAULT uuid_generate_v4()
 );
 
 CREATE TABLE "Proprietaire" (
-    id UUID UNIQUE PRIMARY KEY NOT NULL REFERENCES "Personne"(id),
+    id UUID UNIQUE PRIMARY KEY NOT NULL REFERENCES "Personne"(id) ON DELETE CASCADE,
     id_proprietaire UUID UNIQUE NOT NULL DEFAULT uuid_generate_v4()
 );
 
@@ -44,7 +44,7 @@ CREATE TABLE "Appartement" (
 
 
 CREATE TABLE "Locataire" (
-    id UUID UNIQUE PRIMARY KEY NOT NULL UNIQUE REFERENCES "Personne"(id),
+    id UUID UNIQUE PRIMARY KEY NOT NULL UNIQUE REFERENCES "Personne"(id) ON DELETE CASCADE,
     id_locataire UUID NOT NULL DEFAULT uuid_generate_v4(),
     rib VARCHAR(34) NOT NULL UNIQUE,
     id_appartement UUID REFERENCES "Appartement"(id)
@@ -52,8 +52,8 @@ CREATE TABLE "Locataire" (
 
 CREATE TABLE "Demande" (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    id_client UUID UNIQUE NOT NULL REFERENCES "Client"(id_client) ON DELETE CASCADE,
-    id_appartement UUID UNIQUE NOT NULL REFERENCES "Appartement"(id),
+    id_client UUID NOT NULL REFERENCES "Client"(id_client) ON DELETE CASCADE,
+    id_appartement UUID NOT NULL REFERENCES "Appartement"(id) ON DELETE CASCADE,
     date_limite DATE NOT NULL
 );
 

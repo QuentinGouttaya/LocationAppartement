@@ -2,7 +2,7 @@ using GSBAppartement.Domain.Personnes;
 using GSBAppartement.Repository.Interfaces;
 using GSBAppartement.Domain.Demande;
 using Microsoft.AspNetCore.Mvc;
-
+using GSBAppartement.Domain.Utility;
 
 namespace GSBAppartement.Controllers
 {
@@ -52,6 +52,44 @@ namespace GSBAppartement.Controllers
         {
             return await _clientRepository.GetDemandesByClientIdAsync(clientId);
         }
+
+        [HttpDelete("{clientId}/delete")]
+        public async Task<ActionResult> Delete(Guid clientId)
+        {
+            await _clientRepository.DeleteAsync(clientId);
+            return NoContent();
+        }
+
+
+        [HttpPost("/demande/{demandeId}/accept")]
+        public async Task<ActionResult> AcceptDemande(DemandeAcceptModel model)
+        {
+            try
+            {
+                await _clientRepository.AcceptDemandeAsync(model.DemandeId, model.ClientId, model.Rib);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+
+            }
+        }
+
+        [HttpPost("/client/add")]
+        public async Task Add(Client client)
+        {
+            await _clientRepository.AddAsync(client);
+
+        }
     }
 }
+
+
+
+
+
+
+
 

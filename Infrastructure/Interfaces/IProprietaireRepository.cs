@@ -12,6 +12,7 @@ namespace GSBAppartement.Repository.Interfaces
     {
         Task<IEnumerable<Proprietaire>> GetAllAsync();
         Task<Proprietaire> GetByIdAsync(Guid id);
+        Task<Proprietaire> AddAsync(Proprietaire proprietaire);
     }
 }
 

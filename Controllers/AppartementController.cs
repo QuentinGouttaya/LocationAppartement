@@ -35,6 +35,13 @@ namespace GSBAppartement.Controllers
             return appartement;
         }
 
+        [HttpDelete("{appartementId}")]
+        public async Task<ActionResult> Delete(Guid appartementId)
+        {
+            await _appartementRepository.DeleteAsync(appartementId);
+            return NoContent();
+        }
+
         [HttpGet("/{idProprietaire}/appartements")]
         public async Task<IEnumerable<Appartement>> GetProprietaireAppartementsByIdAsync(Guid idProprietaire)
         {
@@ -47,6 +54,17 @@ namespace GSBAppartement.Controllers
         public async Task<IEnumerable<Locataire>> GetLocatairesByAppartementId(Guid appartementId)
         {
             return await _appartementRepository.GetLocatairesByAppartementIdAsync(appartementId);
+        }
+
+        [HttpPost("/appartement/add")]
+        public async Task<Appartement> AddAsync(Appartement appartement)
+        {
+            if (appartement == null)
+            {
+                return null;
+            }
+
+            return await _appartementRepository.AddAsync(appartement);
         }
 
     }

@@ -37,13 +37,7 @@ namespace GSBAppartement.Controllers
         }
 
 
-        [HttpPost]
-        public async Task<ActionResult<Locataire>> Add(Guid ClientId, string rib, Guid appartementId)
-        {
-            await _locataireRepository.AddAsync(ClientId, rib, appartementId);
 
-            return CreatedAtAction(nameof(GetById), new { locataireId = ClientId }, ClientId);
-        }
 
 
         [HttpDelete("{locataireId}")]

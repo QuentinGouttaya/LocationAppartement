@@ -42,11 +42,24 @@ namespace GSBAppartement.Repository.Implementations
         }
 
 
+        public async Task<Proprietaire> AddAsync(Proprietaire proprietaire)
+        {
+            proprietaire.ProprietaireId = Guid.NewGuid();
+
+
+            _context.Proprietaire.Add(proprietaire);
+            await _context.SaveChangesAsync();
+            return proprietaire;
+        }
+
+
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+
 
         protected virtual void Dispose(bool disposing)
         {

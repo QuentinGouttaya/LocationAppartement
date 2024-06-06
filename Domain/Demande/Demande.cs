@@ -21,5 +21,6 @@ namespace GSBAppartement.Domain.Demande
 
 		[Column("date_limite")]
 		public DateTime DateLimite { get; set; }
+
 	}
 }

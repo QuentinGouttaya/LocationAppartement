@@ -11,6 +11,6 @@ namespace GSBAppartement.Repository.Interfaces
         Task<Locataire> GetByIdAsync(Guid locataireId);
         Task UpdateAsync(Locataire locataire);
         Task DeleteAsync(Guid locataireId);
-        Task AddAsync(Guid ClientId, string rib, Guid appartementId);
+        Task AddAsync(Client client, string rib, Guid appartementId);
     }
 }
